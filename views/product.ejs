@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <title><%= product.name %> - MitFruits</title>
+    <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+    <%- include('header') %>
+    <section class="product-detail">
+        <div class="product-detail-main">
+            <div class="product-detail-imgbox">
+                <img src="<%= product.image %>" alt="Ảnh <%= product.name %>">
+                <div class="product-sale">-33%</div>
+            </div>
+            <div class="product-detail-info">
+                <h1><%= product.name %></h1>
+                <div class="product-detail-price">
+                    <span class="old-price"><%= (product.price * 1.2).toLocaleString() %>đ</span>
+                    <span class="new-price"><%= product.price.toLocaleString() %>đ</span>
+                </div>
+                <ul class="product-attrs">
+                    <li>Xuất xứ: Việt Nam</li>
+                    <li>Bảo quản: Lạnh</li>
+                    <li>Hạn sử dụng: 2025</li>
+                    <li>Giá trị dinh dưỡng cao</li>
+                </ul>
+                <form method="POST" action="/add-to-cart" class="product-buy-form">
+                    <input type="hidden" name="id" value="<%= product.id %>">
+                    <input type="number" name="qty" value="1" min="1" style="width:50px;">
+                    <button type="submit">Mua ngay</button>
+                </form>
+                <div class="product-detail-contact product-detail-contact-hl">
+                    <div class="desc-highlight">
+                        <span class="desc-icon">🍃</span> <b>Mít tươi loại 1</b> – Được tuyển chọn từ những vườn mít sạch, đạt tiêu chuẩn VietGAP.<br>
+                        <span class="desc-icon">🌱</span> <b>Xuất xứ:</b> Việt Nam, vùng trồng nổi tiếng Đồng Nai, Tiền Giang.<br>
+                        <span class="desc-icon">❄️</span> <b>Bảo quản:</b> Lạnh 5-10°C, giữ độ tươi ngon tự nhiên.<br>
+                        <span class="desc-icon">💪</span> <b>Giàu dinh dưỡng:</b> Bổ sung vitamin C, chất xơ, tốt cho tiêu hóa, tăng sức đề kháng.<br>
+                        <span class="desc-icon">✅</span> <b>Cam kết:</b> Không chất bảo quản, không hóa chất độc hại.<br>
+                        <span class="desc-icon">📦</span> <b>Đóng gói:</b> Hút chân không, đảm bảo vệ sinh an toàn thực phẩm.<br>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="product-detail-tabs">
+            <button class="tab-btn active">Mô tả</button>
+            <button class="tab-btn">Đánh giá (0)</button>
+        </div>
+        <div class="product-detail-desc">
+            <p><%= product.desc %></p>
+            <p>Mít tươi ngon, bảo quản lạnh, không chất bảo quản và các chất gây hại cho sức khỏe.</p>
+        </div>
+    </section>
+    <section class="product-similar">
+        <h2>SẢN PHẨM TƯƠNG TỰ</h2>
+        <div class="product-list">
+            <% mitList.filter(m => m.id !== product.id).slice(0,3).forEach(mit => { %>
+            <div class="product-card">
+                <div class="product-sale">-10%</div>
+                <a href="/product/<%= mit.id %>"><img src="<%= mit.image %>" alt="Ảnh <%= mit.name %>"></a>
+                <div class="product-name"><a href="/product/<%= mit.id %>"><%= mit.name %></a></div>
+                <div class="product-price"><%= mit.price.toLocaleString() %> VNĐ</div>
+                <form method="POST" action="/add-to-cart">
+                    <input type="hidden" name="id" value="<%= mit.id %>">
+                    <button type="submit">Mua ngay</button>
+                </form>
+            </div>
+            <% }) %>
+        </div>
+    </section>
+    <footer>
+        <div class="container">
+            <div class="footer-info">
+                <b>MitFruits</b> - Địa chỉ: 123 Đường Mít, Hà Nội | Hotline: 0123 456 789
+            </div>
+            <div class="footer-copy">&copy; 2024 MitFruits. All rights reserved.</div>
+        </div>
+    </footer>
+</body>
+</html> 

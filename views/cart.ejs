@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <title>Giỏ hàng - MitFruits</title>
+    <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+    <%- include('header') %>
+    <section class="cart-section">
+        <div class="cart-container">
+            <div class="cart-left">
+                <form method="POST" action="/update-cart">
+                <table class="cart-table">
+                    <thead>
+                        <tr>
+                            <th>Sản phẩm</th>
+                            <th>Giá</th>
+                            <th>Số lượng</th>
+                            <th>Tổng</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <% if (cart.length === 0) { %>
+                            <tr><td colspan="5">Giỏ hàng trống.</td></tr>
+                        <% } else { %>
+                        <% cart.forEach((item, idx) => { %>
+                        <tr>
+                            <td class="cart-prod">
+                                <a href="/product/<%= item.id %>"><img src="<%= item.image %>" alt="Ảnh <%= item.name %>"></a>
+                                <div class="cart-prod-info">
+                                    <a style="font-family: none;"><b><%= item.name %></b></a>
+                                </div>
+                            </td>
+                            <td class="cart-price"><%= item.price.toLocaleString() %>đ</td>
+                            <td>
+                                <div class="cart-qty-box">
+                                    <button type="submit" formaction="/update-cart?act=dec&id=<%= item.id %>">-</button>
+                                    <input type="text" name="qty_<%= item.id %>" value="<%= item.qty %>" size="1" readonly>
+                                    <button type="submit" formaction="/update-cart?act=inc&id=<%= item.id %>">+</button>
+                                </div>
+                            </td>
+                            <td class="cart-price"><%= (item.price * item.qty).toLocaleString() %>đ</td>
+                            <td><button type="submit" formaction="/update-cart?act=del&id=<%= item.id %>" class="cart-del">✕</button></td>
+                        </tr>
+                        <% }) %>
+                        <% } %>
+                    </tbody>
+                </table>
+                <div class="cart-actions">
+                    <a href="/" class="cart-btn-outline">&larr; Tiếp tục xem sản phẩm</a>
+                    <button type="submit" class="cart-btn-outline">Cập nhật giỏ hàng</button>
+                </div>
+                </form>
+            </div>
+            <div class="cart-right">
+                <div class="cart-summary">
+                    <h3>Tổng số lượng</h3>
+                    <div class="cart-summary-row">
+                        <span>Tổng phụ</span>
+                        <span><%= total.toLocaleString() %>đ</span>
+                    </div>
+                    <div class="cart-summary-row">
+                        <span>Tổng</span>
+                        <span><%= total.toLocaleString() %>đ</span>
+                    </div>
+                    <button class="cart-checkout" onclick="window.location='/checkout'">Tiến hành thanh toán</button>
+                </div>
+                <div class="cart-voucher">
+                    <button class="cart-voucher-btn">Phiếu ưu đãi</button>
+                    <input type="text" placeholder="Mã ưu đãi">
+                    <button class="cart-voucher-apply">Áp dụng</button>
+                </div>
+            </div>
+        </div>
+    </section>
+    <footer>
+        <div class="container">
+            <div class="footer-info">
+                <b>MitFruits</b> - Địa chỉ: 123 Đường Mít, Hà Nội | Hotline: 0123 456 789
+            </div>
+            <div class="footer-copy">&copy; 2024 MitFruits. All rights reserved.</div>
+        </div>
+    </footer>
+</body>
+</html> 

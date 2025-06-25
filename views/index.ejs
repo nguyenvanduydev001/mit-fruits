@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <title>MitFruits - Website Bán Mít</title>
+    <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+    <%- include('header') %>
+    <!-- BANNER LỚN -->
+    <section class="banner">
+        <div class="banner-content">
+            <h2>RAU CỦ QUẢ TƯƠI NGON</h2>
+            <p>VietFarm là nơi với sứ mệnh trở thành nhà cung cấp đáng tin cậy cung cấp các sản phẩm sạch tự nhiên, tươi xanh, tràn đầy dinh dưỡng tới từng mảnh, hướng cộng đồng tới lối sống lành mạnh toàn diện và hạnh phúc.</p>
+        </div>
+        <img class="banner-img" src="/images.jpg" alt="Banner" style="object-fit:cover;width:266px;height:174px;border-radius:20px;box-shadow:0 4px 16px rgba(0,0,0,0.08);">
+    </section>
+    <!-- DANH MỤC NỔI BẬT -->
+    <section class="category-boxes">
+        <div class="cat-box">Rau củ tươi<br><span>Được chọn lọc kỹ càng</span></div>
+        <div class="cat-box">Thực phẩm sạch<br><span>Quy trình đảm bảo an toàn</span></div>
+        <div class="cat-box">Trái cây tươi<br><span>Nhập khẩu & trong nước</span></div>
+    </section>
+    <!-- SECTION SẢN PHẨM 1 -->
+    <section class="product-section">
+        <h2>TRÁI CÂY NHẬP KHẨU</h2>
+        <div class="product-list">
+            <% mitList.forEach((mit, idx) => { %>
+            <div class="product-card">
+                <div class="product-sale">-10%</div>
+                <a href="/product/<%= mit.id %>"><img src="<%= mit.image %>" alt="Ảnh <%= mit.name %>"></a>
+                <div class="product-name"><a href="/product/<%= mit.id %>"><%= mit.name %></a></div>
+                <div class="product-price"><%= mit.price.toLocaleString() %> VNĐ</div>
+                <form method="POST" action="/add-to-cart">
+                    <input type="hidden" name="id" value="<%= mit.id %>">
+                    <button type="submit">Mua ngay</button>
+                </form>
+            </div>
+            <% }) %>
+        </div>
+        <div class="center"><button class="see-more">Xem thêm</button></div>
+    </section>
+    <!-- BANNER NHỎ GIỮA TRANG -->
+    <section class="mid-banner">
+        <img src="/images.jpg" alt="Banner nhỏ" style="width:100%;max-width:600px;border-radius:12px;box-shadow:0 2px 8px rgba(0,0,0,0.08);">
+    </section>
+    <!-- SECTION SẢN PHẨM 2 -->
+    <section class="product-section">
+        <h2>TRÁI CÂY NỘI ĐỊA</h2>
+        <div class="product-list">
+            <% mitList.forEach((mit, idx) => { %>
+            <div class="product-card">
+                <div class="product-sale">-20%</div>
+                <a href="/product/<%= mit.id %>"><img src="<%= mit.image %>" alt="Ảnh <%= mit.name %>"></a>
+                <div class="product-name"><a href="/product/<%= mit.id %>"><%= mit.name %></a></div>
+                <div class="product-price"><%= mit.price.toLocaleString() %> VNĐ</div>
+                <form method="POST" action="/add-to-cart">
+                    <input type="hidden" name="id" value="<%= mit.id %>">
+                    <button type="submit">Mua ngay</button>
+                </form>
+            </div>
+            <% }) %>
+        </div>
+        <div class="center"><button class="see-more">Xem thêm</button></div>
+    </section>
+    <!-- SECTION NƯỚC ÉP -->
+    <section class="juice-section">
+        <h2>CÁC LOẠI NƯỚC ÉP</h2>
+        <div class="product-list">
+            <% mitList.forEach((mit, idx) => { %>
+            <div class="product-card">
+                <div class="product-sale">-15%</div>
+                <a href="/product/<%= mit.id %>"><img src="<%= mit.image %>" alt="Ảnh <%= mit.name %>"></a>
+                <div class="product-name"><a href="/product/<%= mit.id %>"><%= mit.name %></a></div>
+                <div class="product-price"><%= mit.price.toLocaleString() %> VNĐ</div>
+                <form method="POST" action="/add-to-cart">
+                    <input type="hidden" name="id" value="<%= mit.id %>">
+                    <button type="submit">Mua ngay</button>
+                </form>
+            </div>
+            <% }) %>
+        </div>
+    </section>
+    <!-- TIN TỨC & LIÊN HỆ -->
+    <section class="news-contact-section">
+        <div class="news-list">
+            <h3>Tin tức</h3>
+            <div class="news-item">Kỹ thuật trồng mít sạch trong chậu xốp tại nhà đơn giản</div>
+            <div class="news-item">Ăn mít đúng cách tốt cho sức khỏe</div>
+            <div class="news-item">Mẹo chọn mít ngon</div>
+            <div class="news-item">Eat Clean – bí kíp để có thân hình xinh như mơ</div>
+            <div class="news-item">Lấy lại vóc eo con kiến nhờ công thức đơn giản từ củ quả rau củ</div>
+        </div>
+        <div class="contact-form">
+            <h3>Liên hệ tư vấn mua hàng</h3>
+            <form>
+                <input type="text" placeholder="Họ tên">
+                <input type="text" placeholder="Số điện thoại">
+                <input type="text" placeholder="Email">
+                <textarea placeholder="Nội dung cần tư vấn"></textarea>
+                <button type="submit">Gửi liên hệ</button>
+            </form>
+        </div>
+    </section>
+    <!-- FOOTER -->
+    <footer>
+        <div class="container">
+            <div class="footer-info">
+                <b>MitFruits</b> - Địa chỉ: 123 Đường Mít, Hà Nội | Hotline: 0123 456 789
+            </div>
+            <div class="footer-copy">&copy; 2024 MitFruits. All rights reserved.</div>
+        </div>
+    </footer>
+</body>
+</html> 

@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <title>Thanh toán - MitFruits</title>
+    <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+    <%- include('header') %>
+    <section class="checkout-section">
+        <form class="checkout-form-all" method="POST" action="/order">
+            <div class="checkout-container">
+                <div class="checkout-form">
+                    <h2>THÔNG TIN THANH TOÁN</h2>
+                    <div class="checkout-row">
+                        <div class="checkout-field">
+                            <label>Tên *</label>
+                            <input type="text" name="firstName" required>
+                        </div>
+                        <div class="checkout-field">
+                            <label>Tên *</label>
+                            <input type="text" name="lastName" required>
+                        </div>
+                    </div>
+                    <div class="checkout-row">
+                        <div class="checkout-field">
+                            <label>Tên công ty (tùy chọn)</label>
+                            <input type="text" name="company">
+                        </div>
+                        <div class="checkout-field">
+                            <label>Quốc gia *</label>
+                            <select name="country" required>
+                                <option>Việt Nam</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="checkout-row">
+                        <div class="checkout-field">
+                            <label>Địa chỉ *</label>
+                            <input type="text" name="address" required>
+                        </div>
+                        <div class="checkout-field">
+                            <label>Mã bưu điện (tùy chọn)</label>
+                            <input type="text" name="zipcode">
+                        </div>
+                    </div>
+                    <div class="checkout-row">
+                        <div class="checkout-field">
+                            <label>Tỉnh / Thành phố *</label>
+                            <input type="text" name="city" required>
+                        </div>
+                        <div class="checkout-field">
+                            <label>Số điện thoại *</label>
+                            <input type="text" name="phone" required>
+                        </div>
+                    </div>
+                    <div class="checkout-row">
+                        <div class="checkout-field" style="width:100%">
+                            <label>Địa chỉ email *</label>
+                            <input type="email" name="email" required>
+                        </div>
+                    </div>
+                    <h2>THÔNG TIN BỔ SUNG</h2>
+                    <div class="checkout-row">
+                        <div class="checkout-field" style="width:100%">
+                            <label>Ghi chú đơn hàng (tùy chọn)</label>
+                            <textarea name="note" rows="3"></textarea>
+                        </div>
+                    </div>
+                </div>
+                <div class="checkout-summary">
+                    <h3>ĐƠN HÀNG CỦA BẠN</h3>
+                    <table class="checkout-table">
+                        <tr>
+                            <td>SẢN PHẨM</td>
+                            <td>TỔNG</td>
+                        </tr>
+                        <% cart.forEach(item => { %>
+                        <tr>
+                            <td><%= item.name %> × <%= item.qty %></td>
+                            <td><%= (item.price * item.qty).toLocaleString() %>đ</td>
+                        </tr>
+                        <% }) %>
+                        <tr>
+                            <td>Tổng phụ</td>
+                            <td><%= total.toLocaleString() %>đ</td>
+                        </tr>
+                        <tr>
+                            <td><b>Tổng</b></td>
+                            <td><b><%= total.toLocaleString() %>đ</b></td>
+                        </tr>
+                    </table>
+                    <div class="checkout-method">
+                        <label><input type="radio" name="method" value="bank" checked> Chuyển khoản ngân hàng</label>
+                        <div class="checkout-method-desc">Thực hiện thanh toán vào tài khoản ngân hàng của chúng tôi. Vui lòng sử dụng Mã đơn hàng của bạn trong phần nội dung thanh toán. Đơn hàng sẽ được giao sau khi tiền đã chuyển.</div>
+                        <label><input type="radio" name="method" value="cod"> Trả tiền mặt khi nhận hàng</label>
+                    </div>
+                    <button class="checkout-order-btn" type="submit">Đặt hàng</button>
+                    <div class="checkout-note">Your personal data will be used to process your order, support your experience through this website, and for other purposes described in our <a href="#">chính sách riêng tư</a>.</div>
+                </div>
+            </div>
+        </form>
+    </section>
+    <footer>
+        <div class="container">
+            <div class="footer-info">
+                <b>MitFruits</b> - Địa chỉ: 123 Đường Mít, Hà Nội | Hotline: 0123 456 789
+            </div>
+            <div class="footer-copy">&copy; 2024 MitFruits. All rights reserved.</div>
+        </div>
+    </footer>
+</body>
+</html> 

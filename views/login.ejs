@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <title>Đăng nhập - MitFruits</title>
+    <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+    <div class="page-wrapper">
+    <%- include('header') %>
+    <section class="login-section">
+        <div class="login-container">
+            <h2>ĐĂNG NHẬP</h2>
+            <% if (typeof error !== 'undefined' && error) { %>
+              <div class="login-error"><%= error %></div>
+            <% } %>
+            <form class="login-form" method="POST" action="/login">
+                <div class="login-field">
+                    <label>Tên tài khoản hoặc địa chỉ email *</label>
+                    <input type="text" name="username" required>
+                </div>
+                <div class="login-field">
+                    <label>Mật khẩu *</label>
+                    <input type="password" name="password" required>
+                </div>
+                <div class="login-actions">
+                    <button class="login-btn" type="submit">ĐĂNG NHẬP</button>
+                    <label class="login-remember"><input type="checkbox" name="remember"> Ghi nhớ mật khẩu</label>
+                </div>
+                <div class="login-links">
+                    <a href="#">Quên mật khẩu?</a>
+                </div>
+            </form>
+        </div>
+    </section>
+    <footer>
+        <div class="container">
+            <div class="footer-info">
+                <b>MitFruits</b> - Địa chỉ: 123 Đường Mít, Hà Nội | Hotline: 0123 456 789
+            </div>
+            <div class="footer-copy">&copy; 2024 MitFruits. All rights reserved.</div>
+        </div>
+    </footer>
+    </div>
+</body>
+</html> 

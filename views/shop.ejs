@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <title>Cửa hàng - MitFruits</title>
+    <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+    <%- include('header') %>
+    <section class="shop-section">
+        <div class="shop-title">
+            <h1>Cửa hàng</h1>
+            <div class="shop-breadcrumb">Trang chủ / <b>Cửa hàng</b></div>
+        </div>
+        <div class="shop-container">
+            <aside class="shop-sidebar">
+                <div class="shop-category-box">
+                    <div class="shop-category-title">DANH MỤC SẢN PHẨM</div>
+                    <ul class="shop-category-list">
+                        <li><a href="#">Các loại hạt dinh dưỡng</a></li>
+                        <li><a href="#">Các loại rau củ quả Organic</a></li>
+                        <li><a href="#">Nước ép</a></li>
+                        <li><a href="#">Sản phẩm khác</a></li>
+                        <li><a href="#">Trái cây nhập khẩu</a></li>
+                        <li><a href="#">Trái cây nội địa</a></li>
+                    </ul>
+                </div>
+            </aside>
+            <main class="shop-main">
+                <div class="shop-sort-bar">
+                    <select>
+                        <option>Thứ tự mặc định</option>
+                        <option>Giá tăng dần</option>
+                        <option>Giá giảm dần</option>
+                        <option>Tên A-Z</option>
+                    </select>
+                </div>
+                <div class="product-list">
+                    <% mitList.forEach((mit, idx) => { %>
+                    <div class="product-card">
+                        <div class="product-sale">-10%</div>
+                        <a href="/product/<%= mit.id %>"><img src="<%= mit.image %>" alt="Ảnh <%= mit.name %>"></a>
+                        <div class="product-name"><a href="/product/<%= mit.id %>"><%= mit.name %></a></div>
+                        <div class="product-price">
+                            <span class="old-price"><%= (mit.price * 1.15).toLocaleString() %>đ</span>
+                            <span class="new-price"><%= mit.price.toLocaleString() %>đ</span>
+                        </div>
+                        <form method="POST" action="/add-to-cart">
+                            <input type="hidden" name="id" value="<%= mit.id %>">
+                            <button type="submit">Mua ngay</button>
+                        </form>
+                    </div>
+                    <% }) %>
+                </div>
+            </main>
+        </div>
+    </section>
+    <footer>
+        <div class="container">
+            <div class="footer-info">
+                <b>MitFruits</b> - Địa chỉ: 123 Đường Mít, Hà Nội | Hotline: 0123 456 789
+            </div>
+            <div class="footer-copy">&copy; 2024 MitFruits. All rights reserved.</div>
+        </div>
+    </footer>
+</body>
+</html> 

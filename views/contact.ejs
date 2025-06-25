@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <title>Liên hệ - MitFruits</title>
+    <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+    <!-- HEADER HALONA STYLE (reuse từ các file khác) -->
+    <%- include('header') %>
+    <section class="contact-section">
+        <div class="contact-map">
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3724.005017964073!2d105.7828893154027!3d21.03178439307359!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3135ab3b7b7b7b7b%3A0x7b7b7b7b7b7b7b7b!2zMTgwIEzDqiBDaMOtbmggVGjhuq9uZywgUGjGsOG7nW5nIDksIFF1YW4gMiwgSMOgIE7hu5lp!5e0!3m2!1svi!2s!4v1680000000000!5m2!1svi!2s" width="100%" height="320" style="border:0; border-radius:12px; box-shadow:0 2px 8px rgba(60,160,60,0.08);" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+        </div>
+        <div class="contact-main">
+            <div class="contact-info-box">
+                <h2>LIÊN HỆ VỚI CHÚNG TÔI</h2>
+                <div class="contact-info">
+                    <b>Công ty TNHH MitFruits</b><br>
+                    <span class="contact-label">Địa chỉ:</span> 180 Lê Chính Thắng, Phường 9, Quận 3, TP Hồ Chí Minh<br>
+                    <span class="contact-label">Hotline:</span> <a href="tel:0986989626" class="contact-hotline">0986.989.626</a><br>
+                    <span class="contact-label">Email:</span> <a href="mailto:mitfruits@gmail.com">mitfruits@gmail.com</a><br>
+                    <span class="contact-label">Website:</span> <a href="https://mitfruits.com">mitfruits.com</a><br>
+                    <span class="contact-label">Mạng xã hội:</span>
+                    <a href="#" class="contact-social"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/05/Facebook_Logo_%282019%29.png/500px-Facebook_Logo_%282019%29.png" alt="fb" height="20"></a>
+                    <a href="#" class="contact-social"><img src="https://upload.wikimedia.org/wikipedia/commons/e/ef/Youtube_logo.png" alt="yt" height="20"></a>
+                    <a href="#" class="contact-social"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/91/Icon_of_Zalo.svg/2048px-Icon_of_Zalo.svg.png" alt="zalo" height="20"></a>
+                </div>
+            </div>
+            <div class="contact-form-box">
+                <h2>LIÊN HỆ TƯ VẤN MUA HÀNG</h2>
+                <% if (typeof success !== 'undefined' && success) { %>
+                  <div class="contact-success">Thông tin liên hệ của bạn đã được gửi!</div>
+                <% } %>
+                <form class="contact-form" method="POST" action="/contact">
+                    <input type="text" name="name" placeholder="Họ tên của bạn..." required>
+                    <input type="text" name="phone" placeholder="Số điện thoại..." required>
+                    <textarea name="message" placeholder="Nội dung cần tư vấn..." rows="4" required></textarea>
+                    <button type="submit">Gửi liên hệ</button>
+                </form>
+            </div>
+        </div>
+    </section>
+    <footer>
+        <div class="container">
+            <div class="footer-info">
+                <b>MitFruits</b> - Địa chỉ: 180 Lê Chính Thắng, Q3, TP.HCM | Hotline: 0986.989.626
+            </div>
+            <div class="footer-copy">&copy; 2024 MitFruits. All rights reserved.</div>
+        </div>
+    </footer>
+</body>
+</html> 
